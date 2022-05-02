@@ -1,5 +1,5 @@
-from factory.cell import Cell
-from factory.impl import *
+from factories.cell.cell import Cell
+from factories.cell import *
 
 
 class CellFactory:

@@ -1,3 +1,6 @@
+from rich import inspect
+
+
 class Utils:
 
 	@staticmethod
@@ -60,3 +63,7 @@ class Utils:
 			helix_number += 1
 
 		return k
+
+	@staticmethod
+	def dump(object_to_dump):
+		inspect(object_to_dump, methods=True)

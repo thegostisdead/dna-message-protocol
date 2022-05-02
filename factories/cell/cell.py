@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from rich import inspect
+
 
 class Cell(ABC):
 	"""Basic representation of cell."""
@@ -21,6 +23,6 @@ class Cell(ABC):
 	def get_right(self) -> dict:
 		"""Get the right column with dict (index in the list -> nucleotide)."""
 
-	@abstractmethod
-	def get_info(self) -> dict:
-		"""Get the cell info."""
+	def display_info(self):
+		"""Show the cell info."""
+		inspect(self, methods=True)

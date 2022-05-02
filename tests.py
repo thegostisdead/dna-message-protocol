@@ -1,12 +1,13 @@
 import unittest
+from factories import CellFactory, Cell
+from factories.cell import ChecksumCell, EndCell, StartCell, DataCell
 
 
 class TestDNACore(unittest.TestCase):
 
 	def test_factory(self):
-		""" Test if the cell factory return the correct object"""
-		from factory import CellFactory
-		from factory.impl import ChecksumCell, EndCell, StartCell, DataCell
+		""" Test if the cell factories return the correct object"""
+
 		cell_factory = CellFactory()
 
 		cell01 = cell_factory.get_cell("start")
@@ -25,18 +26,14 @@ class TestDNACore(unittest.TestCase):
 		self.assertIsInstance(cell04, EndCell, message_end)
 
 	def test_factory_negative(self):
-		""" Test if the cell factory return the bad object"""
-		from factory import CellFactory
-		from factory.impl import ChecksumCell, EndCell, StartCell, DataCell
+		""" Test if the cell factories return the bad object"""
 
 		cell_factory = CellFactory()
 		cell01 = cell_factory.get_cell("start")
 		self.assertEqual(not isinstance(cell01, StartCell), False)
 
 	def test_factory_interface(self):
-		""" Test if the cell factory return the bad object"""
-		from factory import Cell
-		from factory.impl import ChecksumCell, EndCell, StartCell, DataCell
+		""" Test if the cell factories return the bad object"""
 
 		self.assertEqual(issubclass(ChecksumCell, Cell), True)
 		self.assertEqual(issubclass(EndCell, Cell), True)
@@ -44,9 +41,8 @@ class TestDNACore(unittest.TestCase):
 		self.assertEqual(issubclass(DataCell, Cell), True)
 
 	def test_factory_generated_type(self):
-		""" Test if the cell factory return the bad object"""
-		from factory import CellFactory, Cell
-		
+		""" Test if the cell factories return the bad object"""
+
 		cell_factory = CellFactory()
 		cell01 = cell_factory.get_cell("start")
 		cell02 = cell_factory.get_cell("data")

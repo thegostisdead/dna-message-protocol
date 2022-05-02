@@ -1,7 +1,7 @@
-from factory.cell import Cell
+from factories.cell.cell import Cell
 
 
-class DataCell(Cell):
+class ChecksumCell(Cell):
 
 	def get_size(self) -> int:
 		pass
@@ -13,4 +13,4 @@ class DataCell(Cell):
 		pass
 
 	def get_info(self) -> dict:
-		print("je suis DatatCell")
+		print("je suis ChecksumCell")
