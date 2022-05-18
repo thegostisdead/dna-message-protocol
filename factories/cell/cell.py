@@ -2,12 +2,14 @@ from abc import ABC, abstractmethod
 
 from rich import inspect
 
+CELL_SIZE = 4  # number of lines in a single cells
+
 
 class Cell(ABC):
 	"""Basic representation of cell."""
 
-	def __init__(self, size=8):
-		self.size = size
+	def __init__(self):
+		self.size = CELL_SIZE
 		self.left_nucleotide = []
 		self.right_nucleotide = []
 

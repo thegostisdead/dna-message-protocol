@@ -1,6 +1,3 @@
-__all__ = ["Helix", "HelixFactory", "NormalHelix", "RedundantHelix"]
+from factories.helix.helix_factory import HelixFactory
 
-from helix import Helix
-from helix_factory import HelixFactory
-from normal_helix import NormalHelix
-from redundant_helix import RedundantHelix
+from factories.helix.helix import Helix

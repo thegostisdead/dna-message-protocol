@@ -1,10 +1,10 @@
-from factories.helix.helix import Helix
-from factories.helix import *
+from factories.helix.normal_helix import NormalHelix
+from factories.helix.redundant_helix import RedundantHelix
 
 
 class HelixFactory:
 
-	def get_cell(self, is_redundant: bool) -> Helix:
+	def get_helix(self, is_redundant: bool):
 		"""
 		Return a helix factory by providing his type
 		"""

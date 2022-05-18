@@ -6,5 +6,5 @@ class CellsTypes(Enum):
 	START = "start"
 	LENGTH = "length"
 	CHECKSUM = "checksum"
-	DATA = ""
+	DATA = "data"
 	END = "end"

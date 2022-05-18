@@ -1,5 +1,4 @@
-from factories.cell.cell import Cell
-from factories.cell import *
+from factories.cell import Cell, StartCell, ChecksumCell, EndCell, DataCell
 
 
 class CellFactory:

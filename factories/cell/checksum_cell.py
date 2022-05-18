@@ -11,6 +11,3 @@ class ChecksumCell(Cell):
 
 	def get_right(self) -> dict:
 		pass
-
-	def get_info(self) -> dict:
-		print("je suis ChecksumCell")
