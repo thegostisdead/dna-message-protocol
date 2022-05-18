@@ -1,4 +1,6 @@
 from rich import inspect
+import sys
+import argparse
 
 
 class Utils:
@@ -67,3 +69,36 @@ class Utils:
 	@staticmethod
 	def dump(object_to_dump):
 		inspect(object_to_dump, methods=True)
+
+	@staticmethod
+	def invert_dna_sequence(sequence):
+
+		def complement(seq):
+			"""Returns a complement DNA sequence"""
+			complement_dict = {'A': 'T', 'C': 'G', 'T': 'A', 'G': 'C'}
+			seq_list = list(seq)
+			seq_list = [complement_dict[base] for base in seq_list]
+
+			return seq_list
+
+		complement_seq = complement(sequence)
+		return complement_seq
+
+	@staticmethod
+	def parse_args():
+		"""
+		Parse input arguments
+		"""
+		parser = argparse.ArgumentParser()
+		parser.add_argument('-m', '--message', required=True,
+		                    help='The message to encode', )
+		parser.add_argument('-r', '--redundant', action="store_true",
+		                    help='If the message need to be redundant',
+		                    default=False)
+
+		if len(sys.argv) == 1:
+			parser.print_help()
+			sys.exit(1)
+
+		args = parser.parse_args()
+		return args

@@ -1,21 +1,21 @@
-"""
-from helix import Helix
-helix = Helix()
-helix.add_text_message("bonjour les amis")
+from encoder.encoder import Encoder
+from utils.utils import Utils
+from factories import HelixFactory
+from rich import print
 
-"""
-from factories import *
+parsed_args = Utils.parse_args()
+print(parsed_args)
 
+print("[bold magenta]Message a convertir :[/bold magenta]",
+      parsed_args.message)
+ascii_sequence = Encoder.encode(parsed_args.message)
+print("[bold magenta]Séquence a encoder :[/bold magenta]", ascii_sequence)
 
-def main():
-	factory = CellFactory()
+helix_factory = HelixFactory()
+helix = helix_factory.get_helix(is_redundant=parsed_args.redundant)
+helix.display_info()
+print(helix.start)
 
-	cell01 = factory.get_cell("start")
-	cell01.display_info()
+helix.add_message(ascii_sequence)
 
-	cell02 = factory.get_cell("end")
-	cell02.display_info()
-
-
-if __name__ == "__main__":
-	main()
+helix.display_info()

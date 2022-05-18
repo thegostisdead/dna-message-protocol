@@ -10,6 +10,18 @@ from factories.helix.redundant_helix import RedundantHelix
 
 class TestDNACore(unittest.TestCase):
 
+	def test_cell_content(self):
+		"""Test left and right list"""
+		cell_factory = CellFactory()
+
+		cell01 = cell_factory.get_cell("start")
+		cell01.add_nucleotide_left("a")
+		cell01.add_nucleotide_left("a")
+		cell01.add_nucleotide_left("a")
+		print(cell01.get_left())
+		self.assertEqual(len(cell01.get_left()) == 3, True)
+		self.assertEqual(len(cell01.get_right()) == 2, False)
+
 	def test_cell_factory(self):
 		""" Test if the cell factories return the correct object"""
 
@@ -67,6 +79,18 @@ class TestDNACore(unittest.TestCase):
 
 		self.assertEqual(isinstance(helix1, RedundantHelix), True)
 		self.assertEqual(isinstance(helix2, NormalHelix), True)
+
+	def test_helix_factory_generated_type_init_attributes(self):
+		helix_factory = HelixFactory()
+
+		helix1 = helix_factory.get_helix(is_redundant=True)
+		helix2 = helix_factory.get_helix(is_redundant=False)
+
+		self.assertEqual(isinstance(helix1.start, StartCell), True)
+		self.assertEqual(isinstance(helix1.end, EndCell), True)
+
+		self.assertEqual(isinstance(helix2.start, StartCell), True)
+		self.assertEqual(isinstance(helix2.end, EndCell), True)
 
 
 if __name__ == '__main__':
