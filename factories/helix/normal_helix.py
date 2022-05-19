@@ -16,25 +16,9 @@ class NormalHelix(Helix):
 		self.set_start_cell(StartCell(NORMAL_HELIX_VALUE))
 		self.set_end_cell(EndCell())
 
-	def set_start_cell(self, cell):
-		assert (isinstance(cell, StartCell))
-		self.start = cell
-
-	def set_size_cell(self, cell):
-		assert (isinstance(cell, SizeCell))
-		self.size = cell
-
 	def set_checksum_cell(self, cell):
 		assert (isinstance(cell, ChecksumCell))
 		self.checksum = cell
-
-	def set_data_cell(self, cell):
-		assert (isinstance(cell, DataCell))
-		self.data.append(cell)
-
-	def set_end_cell(self, cell):
-		assert (isinstance(cell, EndCell))
-		self.end = cell
 
 	def get_message(self) -> str:
 		return "".join(chr(x) for x in self.message_ascii)

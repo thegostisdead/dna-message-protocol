@@ -13,10 +13,6 @@ class RedundantHelix(Helix):
 		self.set_start_cell(StartCell(REDUNDANT_HELIX))
 		self.set_end_cell(EndCell())
 
-	def set_end_cell(self, cell):
-		assert (isinstance(cell, EndCell))
-		self.end = cell
-
 	def get_message(self) -> str:
 		return "".join(chr(x) for x in self.message_ascii)
 

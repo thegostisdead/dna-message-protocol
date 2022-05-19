@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from rich import inspect
+from ..cell import StartCell, EndCell, SizeCell, ChecksumCell, DataCell
 
 
 class Helix(ABC):
