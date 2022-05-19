@@ -4,41 +4,10 @@ import argparse
 
 
 class Utils:
-
 	@staticmethod
-	def compute_checksum(message) -> int:
-		# message is ascii int array
-
-		return sum(message)
-
-	@staticmethod
-	def find_checksum(message, k):
-
-		# Dividing sent message in packets of k bits.
-		c1 = message[0:k]
-		c2 = message[k:2 * k]
-		c3 = message[2 * k:3 * k]
-		c4 = message[3 * k:4 * k]
-
-		# Calculating the binary sum of packets
-		packet_sum = bin(int(c1, 2) + int(c2, 2) + int(c3, 2) + int(c4, 2))[2:]
-
-		# Adding the overflow bits
-		if len(packet_sum) > k:
-			x = len(packet_sum) - k
-			packet_sum = bin(int(packet_sum[0:x], 2) + int(packet_sum[x:], 2))[
-			             2:]
-		if len(packet_sum) < k:
-			packet_sum = '0' * (k - len(packet_sum)) + packet_sum
-
-		# Calculating the complement of sum
-		checksum = ''
-		for i in packet_sum:
-			if i == '1':
-				checksum += '0'
-			else:
-				checksum += '1'
-		return checksum
+	def bind_left_right(cell, value):
+		cell.add_nucleotide_left(value)
+		cell.add_nucleotide_right(Utils.invert_dna_sequence(value))
 
 	@staticmethod
 	def get_helix_range(data, block_size):
@@ -102,3 +71,15 @@ class Utils:
 
 		args = parser.parse_args()
 		return args
+
+	@staticmethod
+	def attach_int_value(cell, value):
+
+		from encoder.encoder import Encoder
+
+		base_seq = Encoder.ascii_to_dna_base([value])
+		encoded_char = Encoder.replace_with_char(base_seq)
+		print(f"encoded_char={encoded_char}")
+		for char in encoded_char:
+			cell.add_nucleotide_left(char)
+			cell.add_nucleotide_right(Utils.invert_dna_sequence(char))

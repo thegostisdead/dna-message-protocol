@@ -1,9 +1,3 @@
-from dataclasses import dataclass
-
-from utils.utils import Utils
-
-
-@dataclass
 class Encoder:
 
 	@staticmethod
@@ -20,17 +14,18 @@ class Encoder:
 		return ascii_message_sequence
 
 	@staticmethod
-	def ascii_to_dna_base(ascii_message_sequence):
-		def numberToBase(char):
-			if char == 0:
-				return [0]
-			digits = []
-			while char:
-				digits.append(int(char % 4))
-				char //= 4
-			return digits[::-1]
+	def number_to_base(char):
+		if char == 0:
+			return [0]
+		digits = []
+		while char:
+			digits.append(int(char % 4))
+			char //= 4
+		return digits[::-1]
 
-		return [numberToBase(x) for x in ascii_message_sequence]
+	@staticmethod
+	def ascii_to_dna_base(ascii_message_sequence):
+		return [Encoder.number_to_base(x) for x in ascii_message_sequence]
 
 	@staticmethod
 	def replace_with_char(dna_base_sequence):

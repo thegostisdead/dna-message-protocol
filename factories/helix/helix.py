@@ -23,24 +23,39 @@ class Helix(ABC):
 		"""Split here the sequence"""
 
 	@abstractmethod
-	def set_start_cell(self, cell):
-		"""Add the start cell"""
-
-	@abstractmethod
-	def set_size_cell(self, cell):
-		"""Add the size cell"""
-
-	@abstractmethod
-	def set_checksum_cell(self, cell):
-		"""Add the checksum cell"""
-
-	@abstractmethod
-	def set_data_cell(self, cell):
-		"""Add a data cell"""
-
-	@abstractmethod
-	def set_end_cell(self, cell):
+	def get_checksum(self):
 		"""Add end cell"""
+
+	def set_end_cell(self, cell):
+		assert (isinstance(cell, EndCell))
+		self.end = cell
+
+	def set_start_cell(self, cell):
+		assert (isinstance(cell, StartCell))
+		self.start = cell
+
+	def set_size_cell(self, cell):
+		assert (isinstance(cell, SizeCell))
+		self.size = cell
+
+	def set_checksum_cell(self, cell):
+		assert (isinstance(cell, ChecksumCell))
+		self.size = cell
+
+	def set_data_cell(self, cell):
+		assert (isinstance(cell, DataCell))
+		self.data.append(cell)
+
+	def get_helix(self):
+		from factories.cell import SizeCell
+		updated_size_cell = SizeCell()
+		message_size = len(self.data)
+
+		from utils.utils import Utils
+		Utils.attach_int_value(updated_size_cell, message_size)
+		self.set_size_cell(updated_size_cell)
+		self.get_checksum()
+		return self
 
 	def display_info(self):
 		"""Show the helix info."""

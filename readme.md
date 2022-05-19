@@ -12,3 +12,10 @@ We need 4 uniques proteins :
 |     Cytosine     |      C      |    3     | green  |
 
 ![sample](img.png)
+
+StartCell value encoded :
+
+- redundant = 200
+- normal = 151
+
+EndCell value encoded = 140 
