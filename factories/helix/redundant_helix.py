@@ -8,16 +8,16 @@ REDUNDANT_HELIX = 200
 
 class RedundantHelix(Helix):
 
-	def __init__(self, ):
+	def __init__(self):
 		super().__init__()
 		self.set_start_cell(StartCell(REDUNDANT_HELIX))
 		self.set_end_cell(EndCell())
 
+	def get_checksum(self):
+		self.set_checksum_cell(ChecksumCell(len(self.data) + 2))
+
 	def get_message(self) -> str:
 		return "".join(chr(x) for x in self.message_ascii)
-
-	def checksum(self):
-		checksum = len(self.data) + 2
 
 	def add_message(self, ascii_sequence):
 		"""Split here the sequence"""

@@ -3,13 +3,16 @@ from factories.cell import Cell, StartCell, ChecksumCell, EndCell, DataCell
 
 class CellFactory:
 
-	def get_cell(self, wanted_cell_type: str) -> Cell:
+	@staticmethod
+	def get_cell(wanted_cell_type: str, redundant=False) -> Cell:
 		"""Return a cell by providing his type (based on enum)"""
+
 		cells_types = {
-			"start": StartCell(),
+			"start": StartCell(200 if redundant else 151),
+			# TODO replace magic values
 			"data": DataCell(),
-			"checksum": ChecksumCell(),
-			"end": EndCell(),
+			"checksum": ChecksumCell(None),
+			"end": EndCell()
 		}
 
 		if wanted_cell_type in cells_types:

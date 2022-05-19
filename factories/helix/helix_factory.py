@@ -4,7 +4,8 @@ from factories.helix.redundant_helix import RedundantHelix
 
 class HelixFactory:
 
-	def get_helix(self, is_redundant: bool):
+	@staticmethod
+	def get_helix(is_redundant: bool):
 		"""
 		Return a helix factory by providing his type
 		"""

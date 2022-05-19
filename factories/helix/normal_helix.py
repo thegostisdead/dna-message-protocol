@@ -9,7 +9,7 @@ NORMAL_HELIX_VALUE = 151
 
 class NormalHelix(Helix):
 
-	def __init__(self, ):
+	def __init__(self):
 		from ..cell import StartCell, EndCell
 		super().__init__()
 
