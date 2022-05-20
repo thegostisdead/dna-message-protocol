@@ -1,12 +1,12 @@
 import unittest
 
+from encoder.encoder import Encoder
 from factories import CellFactory, Cell
 from factories.cell import ChecksumCell, EndCell, StartCell, DataCell
 
 from factories.helix.helix_factory import HelixFactory
 from factories.helix.normal_helix import NormalHelix
 from factories.helix.redundant_helix import RedundantHelix
-from utils.utils import Utils
 
 
 class TestDNACore(unittest.TestCase):
@@ -96,6 +96,52 @@ class TestDNACore(unittest.TestCase):
 
 		self.assertEqual(isinstance(helix2.start, StartCell), True)
 		self.assertEqual(isinstance(helix2.end, EndCell), True)
+
+	def test_helix_normal_helix(self):
+		helix = HelixFactory.get_helix(is_redundant=False)
+		helix.add_message(Encoder.encode("dorian"))
+		self.assertEqual(helix.get_message(), "dorian")
+		computed_helix = helix.get_helix()
+		self.assertEqual(computed_helix.checksum.get_left(), [['T', 'G']])
+		self.assertEqual(computed_helix.checksum.get_right(), [['A', 'C']])
+		self.assertEqual(computed_helix.data[0].get_left(),
+		                 [['T', 'C', 'T', 'A']])
+		self.assertEqual(computed_helix.data[1].get_left(),
+		                 [['T', 'C', 'G', 'G']])
+		self.assertEqual(computed_helix.data[2].get_left(),
+		                 [['T', 'G', 'A', 'C']])
+		self.assertEqual(computed_helix.data[3].get_left(),
+		                 [['T', 'C', 'C', 'T']])
+		self.assertEqual(computed_helix.data[4].get_left(),
+		                 [['T', 'C', 'A', 'T']])
+		self.assertEqual(computed_helix.data[5].get_left(),
+		                 [['T', 'C', 'G', 'C']])
+
+	def test_helix_redundant_helix(self):
+		helix = HelixFactory.get_helix(is_redundant=True)
+		helix.add_message(Encoder.encode("dorian"))
+		self.assertEqual(helix.get_message(), "dorian")
+		computed_helix = helix.get_helix()
+		self.assertEqual(computed_helix.checksum.get_left(), [['T', 'G']])
+		self.assertEqual(computed_helix.checksum.get_right(), [['A', 'C']])
+		self.assertEqual(computed_helix.data[0].get_left(),
+		                 [['T', 'C', 'T', 'A']])
+		self.assertEqual(computed_helix.data[1].get_left(),
+		                 [['T', 'C', 'T', 'A']])
+		self.assertEqual(computed_helix.data[2].get_left(),
+		                 [['T', 'C', 'G', 'G']])
+		self.assertEqual(computed_helix.data[3].get_left(),
+		                 [['T', 'C', 'G', 'G']])
+		self.assertEqual(computed_helix.data[2].get_left(),
+		                 [['T', 'G', 'A', 'C']])
+		self.assertEqual(computed_helix.data[2].get_left(),
+		                 [['T', 'G', 'A', 'C']])
+		self.assertEqual(computed_helix.data[3].get_left(),
+		                 [['T', 'C', 'C', 'T']])
+		self.assertEqual(computed_helix.data[4].get_left(),
+		                 [['T', 'C', 'A', 'T']])
+		self.assertEqual(computed_helix.data[5].get_left(),
+		                 [['T', 'C', 'G', 'C']])
 
 
 if __name__ == '__main__':

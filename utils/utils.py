@@ -61,6 +61,8 @@ class Utils:
 		parser = argparse.ArgumentParser()
 		parser.add_argument('-m', '--message', required=True,
 		                    help='The message to encode', )
+		parser.add_argument('-o', '--output', required=True,
+		                    help='The output filename of generated image', )
 		parser.add_argument('-r', '--redundant', action="store_true",
 		                    help='If the message need to be redundant',
 		                    default=False)
@@ -79,7 +81,6 @@ class Utils:
 
 		base_seq = Encoder.ascii_to_dna_base([value])
 		encoded_char = Encoder.replace_with_char(base_seq)
-		print(f"encoded_char={encoded_char}")
 		for char in encoded_char:
 			cell.add_nucleotide_left(char)
 			cell.add_nucleotide_right(Utils.invert_dna_sequence(char))

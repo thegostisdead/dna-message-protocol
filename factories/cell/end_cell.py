@@ -11,6 +11,3 @@ class EndCell(Cell):
 		super().__init__()
 
 		Utils.attach_int_value(self, END_VALUE)
-
-	def get_size(self) -> int:
-		pass

@@ -16,14 +16,8 @@ class NormalHelix(Helix):
 		self.set_start_cell(StartCell(NORMAL_HELIX_VALUE))
 		self.set_end_cell(EndCell())
 
-	def set_checksum_cell(self, cell):
-		assert (isinstance(cell, ChecksumCell))
-		self.checksum = cell
-
-	def get_message(self) -> str:
-		return "".join(chr(x) for x in self.message_ascii)
-
-	def get_checksum(self):
+	def add_checksum(self):
+		Utils.dump(ChecksumCell(len(self.data) + 1))
 		self.set_checksum_cell(ChecksumCell(len(self.data) + 1))
 
 	def add_message(self, ascii_sequence):
@@ -36,3 +30,6 @@ class NormalHelix(Helix):
 			computed_cell = DataCell()
 			Utils.bind_left_right(computed_cell, encoded_char)
 			self.set_data_cell(computed_cell)
+
+	def get_message(self) -> str:
+		return "".join(chr(x) for x in self.message_ascii)

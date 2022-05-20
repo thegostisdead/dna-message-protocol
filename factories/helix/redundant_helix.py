@@ -13,7 +13,7 @@ class RedundantHelix(Helix):
 		self.set_start_cell(StartCell(REDUNDANT_HELIX))
 		self.set_end_cell(EndCell())
 
-	def get_checksum(self):
+	def add_checksum(self):
 		self.set_checksum_cell(ChecksumCell(len(self.data) + 2))
 
 	def get_message(self) -> str:

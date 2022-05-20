@@ -30,7 +30,6 @@ class Encoder:
 	@staticmethod
 	def replace_with_char(dna_base_sequence):
 
-		print(dna_base_sequence)
 		mapping = {
 			0: "A",
 			1: "T",

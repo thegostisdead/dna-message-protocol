@@ -8,6 +8,3 @@ class StartCell(Cell):
 		super().__init__()
 
 		Utils.attach_int_value(self, value)
-
-	def get_size(self) -> int:
-		pass

@@ -13,16 +13,10 @@ class Cell(ABC):
 		self.left_nucleotide = []
 		self.right_nucleotide = []
 
-	@abstractmethod
-	def get_size(self) -> int:
-		"""Get the number of nucleotide stored vertically."""
-
 	def get_left(self) -> list:
-		"""Get the left column with dict (index in the list -> nucleotide)."""
 		return self.left_nucleotide
 
 	def get_right(self) -> list:
-		"""Get the right column with dict (index in the list -> nucleotide)."""
 		return self.right_nucleotide
 
 	def add_nucleotide_left(self, nucleotide):
@@ -32,7 +26,6 @@ class Cell(ABC):
 		self.right_nucleotide.append(nucleotide)
 
 	def display_info(self):
-		"""Show the cell info."""
 		inspect(self, methods=True)
 
 	def __repr__(self):
