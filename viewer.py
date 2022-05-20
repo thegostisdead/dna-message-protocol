@@ -6,6 +6,7 @@ RED = 0xFF0000
 GREEN = 0x00FF00
 BLUE = 0x8888FF
 YELLOW = 0xFFFF00
+BLACK = 0x000000
 
 
 def view(width, height, title, helix, output):
@@ -72,8 +73,8 @@ def view(width, height, title, helix, output):
 						end = (left + (bar_length * (index + 1)), y)
 						pygame.draw.line(surface, bar, start, end, 2)
 
-				surface.set_at((left, y), 0x000000)
-				surface.set_at((right, y), 0x000000)
+				surface.set_at((left, y), BLACK)
+				surface.set_at((right, y), BLACK)
 
 				"""if degrees == 0:
 					pygame.draw.line(surface, YELLOW, (0, y), (width, y), 1)"""
