@@ -10,7 +10,7 @@ parsed_args = Utils.parse_args()
 print(parsed_args)
 
 if len(parsed_args.message) > 250:
-	print("[bold magenta]Message has a limit of 250 char:[/bold magenta]")
+	print("[bold red]Message has a limit of 250 char:[/bold red]")
 	sys.exit(1)
 
 print("[bold magenta]Message a convertir:[/bold magenta]", parsed_args.message)

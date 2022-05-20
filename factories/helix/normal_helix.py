@@ -21,7 +21,6 @@ class NormalHelix(Helix):
 		self.set_checksum_cell(ChecksumCell(len(self.data) + 1))
 
 	def add_message(self, ascii_sequence):
-		"""Split here the sequence"""
 		self.message_ascii = ascii_sequence
 		base_seq = Encoder.ascii_to_dna_base(ascii_sequence)
 		self.full_dna_sequence = Encoder.replace_with_char(base_seq)
