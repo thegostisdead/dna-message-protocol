@@ -32,7 +32,7 @@ def view(width, height, title, helix, output):
 				pygame.quit()
 				sys.exit()
 
-		surface.fill((0, 0, 0))
+		surface.fill((255, 255, 255))
 
 		start_y = 0
 
@@ -72,8 +72,8 @@ def view(width, height, title, helix, output):
 						end = (left + (bar_length * (index + 1)), y)
 						pygame.draw.line(surface, bar, start, end, 2)
 
-				surface.set_at((left, y), WHITE)
-				surface.set_at((right, y), WHITE)
+				surface.set_at((left, y), 0x000000)
+				surface.set_at((right, y), 0x000000)
 
 				"""if degrees == 0:
 					pygame.draw.line(surface, YELLOW, (0, y), (width, y), 1)"""
