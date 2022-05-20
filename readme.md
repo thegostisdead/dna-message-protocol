@@ -20,5 +20,38 @@ StartCell value encoded :
 
 EndCell value encoded = 140
 
-## How to use
+## How to use it
 
+Please install requirements before.
+
+```
+pip install -r requirements.txt 
+```
+
+or
+
+```
+pip install pygame rich  
+```
+
+Non redundant :
+
+```
+python3 bootstrap.py -m "de" -o "de.jpg"
+```
+
+Redundant :
+
+```
+python3 bootstrap.py -r -m "de" -o "de.jpg"
+```
+
+Help :
+
+```
+python3 bootstrap.py -help
+```
+
+## Example
+
+![](demo.gif)
