@@ -18,4 +18,7 @@ StartCell value encoded :
 - redundant = 200
 - normal = 151
 
-EndCell value encoded = 140 
+EndCell value encoded = 140
+
+## How to use
+

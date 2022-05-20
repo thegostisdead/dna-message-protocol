@@ -15,8 +15,9 @@ def view(width, height, title, helix, output):
 	import pygame
 
 	pygame.init()
-	surface = pygame.display.set_mode((width, height))
-	pygame.display.set_caption(title)
+	surface = pygame.Surface((width, height))
+
+	# pygame.display.set_caption(title)
 
 	cells = [helix.start, helix.size, helix.checksum]
 
@@ -27,12 +28,12 @@ def view(width, height, title, helix, output):
 	for cell in cells:
 		print(cell)
 
-	while True:
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				pygame.quit()
-				sys.exit()
-
+	# while True:
+	# 	for event in pygame.event.get():
+	# 		if event.type == pygame.QUIT:
+	# 			pygame.quit()
+	# 			sys.exit()
+	if True:
 		surface.fill((255, 255, 255))
 
 		start_y = 0
@@ -81,4 +82,4 @@ def view(width, height, title, helix, output):
 
 			start_y += 180
 		pygame.image.save(surface, output)
-		pygame.display.update()
+# pygame.display.update()
