@@ -26,29 +26,35 @@ class Helix(ABC):
 
 	@abstractmethod
 	def add_checksum(self):
-		"""Add end cell"""
+		"""Compute the checksum and bind it to Helix"""
 
 	def set_end_cell(self, cell):
+		"""Add the end cell to Helix"""
 		assert (isinstance(cell, EndCell))
 		self.end = cell
 
 	def set_start_cell(self, cell):
+		"""Add the start cell to Helix"""
 		assert (isinstance(cell, StartCell))
 		self.start = cell
 
 	def set_size_cell(self, cell):
+		"""Add the size cell to Helix"""
 		assert (isinstance(cell, SizeCell))
 		self.size = cell
 
 	def set_checksum_cell(self, cell):
+		"""Add the checksum cell to Helix"""
 		assert (isinstance(cell, ChecksumCell))
 		self.checksum = cell
 
 	def set_data_cell(self, cell):
+		"""Add the data cell to Helix"""
 		assert (isinstance(cell, DataCell))
 		self.data.append(cell)
 
 	def get_helix(self):
+		"""Return the helix with all cells computed and attached"""
 		updated_size_cell = SizeCell()
 		message_size = len(self.data)
 
@@ -58,5 +64,5 @@ class Helix(ABC):
 		return self
 
 	def display_info(self):
-		"""Show the helix info."""
+		"""Show the helix info by using rich."""
 		inspect(self, methods=True)

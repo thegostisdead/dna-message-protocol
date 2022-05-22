@@ -12,31 +12,27 @@ from factories.helix.redundant_helix import RedundantHelix
 class TestDNACore(unittest.TestCase):
 
 	def test_start_redundant_cell_content(self):
-		"""Test left and right list"""
 
 		cell01 = CellFactory.get_cell("start", redundant=True)
 
-		self.assertEqual(cell01.get_left() == [['G', 'A', 'C', 'A']], True)
-		self.assertEqual(cell01.get_right() == [['C', 'T', 'G', 'T']], True)
+		self.assertEqual(cell01.get_left(), [['C', 'A', 'G', 'A']])
+		self.assertEqual(cell01.get_right(), [['G', 'T', 'C', 'T']])
 
 	def test_start_normal_cell_content(self):
-		"""Test left and right list"""
 
 		cell01 = CellFactory.get_cell("start", redundant=False)
-
-		self.assertEqual(cell01.get_left() == [['C', 'T', 'T', 'G']], True)
-		self.assertEqual(cell01.get_right() == [['G', 'A', 'A', 'C']], True)
+		# GTTC - CAAG
+		self.assertEqual(cell01.get_left(), [['G', 'T', 'T', 'C']])
+		self.assertEqual(cell01.get_right(),[['C', 'A', 'A', 'G']])
 
 	def test_end_cell_content(self):
-		"""Test left and right list"""
 
 		cell01 = CellFactory.get_cell("end")
-
-		self.assertEqual(cell01.get_left() == [['C', 'A', 'G', 'A']], True)
-		self.assertEqual(cell01.get_right() == [['G', 'T', 'C', 'T']], True)
+		# GACA -> CTGT
+		self.assertEqual(cell01.get_left(), [['G', 'A', 'C', 'A']])
+		self.assertEqual(cell01.get_right(), [['C', 'T', 'G', 'T']])
 
 	def test_cell_factory(self):
-		""" Test if the cell factories return the correct object"""
 
 		cell01 = CellFactory.get_cell("start")
 		cell02 = CellFactory.get_cell("data")
@@ -54,21 +50,17 @@ class TestDNACore(unittest.TestCase):
 		self.assertIsInstance(cell04, EndCell, message_end)
 
 	def test_cell_factory_negative(self):
-		""" Test if the cell factories return the bad object"""
 
 		cell01 = CellFactory.get_cell("start")
 		self.assertEqual(not isinstance(cell01, StartCell), False)
 
 	def test_cell_factory_interface(self):
-		""" Test if the cell factories return the bad object"""
-
 		self.assertEqual(issubclass(ChecksumCell, Cell), True)
 		self.assertEqual(issubclass(EndCell, Cell), True)
 		self.assertEqual(issubclass(StartCell, Cell), True)
 		self.assertEqual(issubclass(DataCell, Cell), True)
 
 	def test_cell_factory_generated_type(self):
-		""" Test if the cell factories return the bad object"""
 
 		cell01 = CellFactory.get_cell("start")
 		cell02 = CellFactory.get_cell("data")
@@ -102,46 +94,46 @@ class TestDNACore(unittest.TestCase):
 		helix.add_message(Encoder.encode("dorian"))
 		self.assertEqual(helix.get_message(), "dorian")
 		computed_helix = helix.get_helix()
-		self.assertEqual(computed_helix.checksum.get_left(), [['T', 'G']])
-		self.assertEqual(computed_helix.checksum.get_right(), [['A', 'C']])
+		self.assertEqual(computed_helix.checksum.get_left(), [['T', 'C']])
+		self.assertEqual(computed_helix.checksum.get_right(), [['A', 'G']])
 		self.assertEqual(computed_helix.data[0].get_left(),
-		                 [['T', 'C', 'T', 'A']])
+		                 [['T', 'G', 'T', 'A']])
 		self.assertEqual(computed_helix.data[1].get_left(),
-		                 [['T', 'C', 'G', 'G']])
+		                 [['T', 'G', 'C', 'C']])
 		self.assertEqual(computed_helix.data[2].get_left(),
-		                 [['T', 'G', 'A', 'C']])
+		                 [['T', 'C', 'A', 'G']])
 		self.assertEqual(computed_helix.data[3].get_left(),
-		                 [['T', 'C', 'C', 'T']])
+		                 [['T', 'G', 'G', 'T']])
 		self.assertEqual(computed_helix.data[4].get_left(),
-		                 [['T', 'C', 'A', 'T']])
+		                 [['T', 'G', 'A', 'T']])
 		self.assertEqual(computed_helix.data[5].get_left(),
-		                 [['T', 'C', 'G', 'C']])
+		                 [['T', 'G', 'C', 'G']])
 
 	def test_helix_redundant_helix(self):
 		helix = HelixFactory.get_helix(is_redundant=True)
 		helix.add_message(Encoder.encode("dorian"))
 		self.assertEqual(helix.get_message(), "dorian")
 		computed_helix = helix.get_helix()
-		self.assertEqual(computed_helix.checksum.get_left(), [['T', 'G']])
-		self.assertEqual(computed_helix.checksum.get_right(), [['A', 'C']])
+		self.assertEqual(computed_helix.checksum.get_left(), [['C', 'G']])
+		self.assertEqual(computed_helix.checksum.get_right(), [['G', 'C']])
 		self.assertEqual(computed_helix.data[0].get_left(),
-		                 [['T', 'C', 'T', 'A']])
+		                 [['T', 'G', 'T', 'A']])
 		self.assertEqual(computed_helix.data[1].get_left(),
-		                 [['T', 'C', 'T', 'A']])
+		                 [['T', 'G', 'T', 'A']])
 		self.assertEqual(computed_helix.data[2].get_left(),
-		                 [['T', 'C', 'G', 'G']])
+		                 [['T', 'G', 'C', 'C']])
 		self.assertEqual(computed_helix.data[3].get_left(),
-		                 [['T', 'C', 'G', 'G']])
+		                 [['T', 'G', 'C', 'C']])
 		self.assertEqual(computed_helix.data[2].get_left(),
-		                 [['T', 'G', 'A', 'C']])
+		                 [['T', 'G', 'C', 'C']])
 		self.assertEqual(computed_helix.data[2].get_left(),
-		                 [['T', 'G', 'A', 'C']])
+		                 [['T', 'G', 'C', 'C']])
 		self.assertEqual(computed_helix.data[3].get_left(),
-		                 [['T', 'C', 'C', 'T']])
+		                 [['T', 'G', 'C', 'C']])
 		self.assertEqual(computed_helix.data[4].get_left(),
-		                 [['T', 'C', 'A', 'T']])
+		                 [['T', 'C', 'A', 'G']])
 		self.assertEqual(computed_helix.data[5].get_left(),
-		                 [['T', 'C', 'G', 'C']])
+		                 [['T', 'C', 'A', 'G']])
 
 
 if __name__ == '__main__':

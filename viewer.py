@@ -1,5 +1,4 @@
 import math
-import sys
 
 WHITE = 0xFFFFFF
 RED = 0xFF0000
@@ -9,7 +8,7 @@ YELLOW = 0xFFFF00
 BLACK = 0x000000
 
 
-def view(width, height, title, helix, output):
+def view(width, height, helix, output):
 	half = width // 2
 
 	import pygame
@@ -28,11 +27,6 @@ def view(width, height, title, helix, output):
 	for cell in cells:
 		print(cell)
 
-	# while True:
-	# 	for event in pygame.event.get():
-	# 		if event.type == pygame.QUIT:
-	# 			pygame.quit()
-	# 			sys.exit()
 	if True:
 		surface.fill((255, 255, 255))
 

@@ -1,9 +1,10 @@
 import sys
 
-from encoder.encoder import Encoder
-from utils.utils import Utils
-from factories import HelixFactory
 from rich import print
+
+from encoder.encoder import Encoder
+from factories import HelixFactory
+from utils.utils import Utils
 from viewer import view
 
 parsed_args = Utils.parse_args()
@@ -24,5 +25,4 @@ helix.add_message(ascii_sequence)
 Utils.dump(helix.get_helix())
 print(helix.get_message())
 
-viewer = view(800, 180 * (len(helix.data) + 4), helix.get_message(), helix,
-              parsed_args.output)
+viewer = view(800, 180 * (len(helix.data) + 4), helix, parsed_args.output)

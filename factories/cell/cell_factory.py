@@ -1,9 +1,5 @@
 from factories.cell import Cell, StartCell, ChecksumCell, EndCell, DataCell
 
-REDUNDANT_HELIX = 200
-NORMAL_HELIX = 151
-
-
 class CellFactory:
 
 	@staticmethod
@@ -11,7 +7,7 @@ class CellFactory:
 		"""Return a cell by providing his type (based on enum)"""
 
 		cells_types = {
-			"start": StartCell(REDUNDANT_HELIX if redundant else NORMAL_HELIX),
+			"start": StartCell(redundant),
 			"data": DataCell(),
 			"checksum": ChecksumCell(None),
 			"end": EndCell()

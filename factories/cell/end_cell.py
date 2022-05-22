@@ -2,7 +2,7 @@ from encoder.encoder import Encoder
 from factories.cell.cell import Cell
 from utils.utils import Utils
 
-END_VALUE = 140
+END_VALUE = 140  # 2030 -> GACA
 
 
 class EndCell(Cell):

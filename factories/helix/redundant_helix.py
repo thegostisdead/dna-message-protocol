@@ -20,7 +20,6 @@ class RedundantHelix(Helix):
 		return "".join(chr(x) for x in self.message_ascii)
 
 	def add_message(self, ascii_sequence):
-		"""Split here the sequence"""
 
 		self.message_ascii = ascii_sequence
 		base_seq = Encoder.ascii_to_dna_base(ascii_sequence)
