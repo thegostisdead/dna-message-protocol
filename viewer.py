@@ -20,8 +20,7 @@ def view(width, height, helix, output):
 
 	cells = [helix.start, helix.size, helix.checksum]
 
-	for cell in helix.data:
-		cells.append(cell)
+	cells.extend(iter(helix.data))
 	cells.append(helix.end)
 
 	for cell in cells:

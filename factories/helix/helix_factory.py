@@ -10,7 +10,4 @@ class HelixFactory:
 		Return a helix factory by providing his type
 		"""
 
-		if is_redundant:
-			return RedundantHelix()
-
-		return NormalHelix()
+		return RedundantHelix() if is_redundant else NormalHelix()

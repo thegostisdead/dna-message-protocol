@@ -6,12 +6,7 @@ class Encoder:
 
 	@staticmethod
 	def encode(message):
-		ascii_message_sequence = []
-
-		for char in message:
-			ascii_message_sequence.append(Encoder.get_ascii(char))
-
-		return ascii_message_sequence
+		return [Encoder.get_ascii(char) for char in message]
 
 	@staticmethod
 	def number_to_base(char):
@@ -39,9 +34,7 @@ class Encoder:
 		new_sec = []
 
 		for char_bit in dna_base_sequence:
-			tmp = []
-			for bit in char_bit:
-				tmp.append(mapping[bit])
+			tmp = [mapping[bit] for bit in char_bit]
 			new_sec.append(tmp)
 
 		return new_sec

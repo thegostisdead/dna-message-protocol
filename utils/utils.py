@@ -43,8 +43,7 @@ class Utils:
 			parser.print_help()
 			sys.exit(1)
 
-		args = parser.parse_args()
-		return args
+		return parser.parse_args()
 
 	@staticmethod
 	def attach_int_value(cell, value):
